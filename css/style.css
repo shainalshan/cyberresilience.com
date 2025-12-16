@@ -34,16 +34,16 @@
 }
 
 #preloader img {
-    max-width: 200px;
-    /* Increased size significantly */
-    height: 200px;
-    /* Fixed height for perfect circle */
-    border-radius: 50%;
-    /* Round circle */
-    object-fit: cover;
-    /* Ensure image fits well */
-    box-shadow: 0 0 20px rgba(214, 0, 0, 0.5);
-    /* Optional glow */
+    max-width: 300px;
+    /* Decent size for visibility */
+    height: auto;
+    /* Maintain aspect ratio */
+    border-radius: 0;
+    /* No circle */
+    object-fit: contain;
+    /* Show full image */
+    box-shadow: none;
+    /* Remove glow if desired, or keep square shadow */
 }
 
 #preloader.hidden {
