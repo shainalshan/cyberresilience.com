@@ -34,9 +34,16 @@
 }
 
 #preloader img {
-    max-width: 300px;
-    /* Adjust based on GIF size */
-    height: auto;
+    max-width: 80px;
+    /* Small size */
+    height: 80px;
+    /* Fixed height for perfect circle */
+    border-radius: 50%;
+    /* Round circle */
+    object-fit: cover;
+    /* Ensure image fits well */
+    box-shadow: 0 0 20px rgba(214, 0, 0, 0.5);
+    /* Optional glow */
 }
 
 #preloader.hidden {
