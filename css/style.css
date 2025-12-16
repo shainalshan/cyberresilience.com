@@ -18,6 +18,32 @@
     scroll-behavior: smooth;
 }
 
+/* Preloader */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #000;
+    z-index: 9999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.5s ease, visibility 0.5s;
+}
+
+#preloader img {
+    max-width: 300px;
+    /* Adjust based on GIF size */
+    height: auto;
+}
+
+#preloader.hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
 body {
     background-color: var(--bg-color);
     color: var(--text-color);

@@ -1,5 +1,15 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // --- PRELOADER LOGIC ---
+    const preloader = document.getElementById('preloader');
+    if (preloader) {
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                preloader.classList.add('hidden');
+            }, 2500); // 2.5s display time
+        });
+    }
+
     // Header shadow on scroll
     const navbar = document.querySelector('.navbar');
     if (navbar) {
