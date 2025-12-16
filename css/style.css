@@ -34,9 +34,9 @@
 }
 
 #preloader img {
-    max-width: 120px;
-    /* Increased size */
-    height: 120px;
+    max-width: 200px;
+    /* Increased size significantly */
+    height: 200px;
     /* Fixed height for perfect circle */
     border-radius: 50%;
     /* Round circle */
