@@ -212,7 +212,15 @@ document.addEventListener('DOMContentLoaded', () => {
             runTerminalSequence();
         }
 
-        runTerminalSequence();
+        // Check if preloader exists and wait for it
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            setTimeout(() => {
+                runTerminalSequence();
+            }, 2600); // 2.5s display + buffer
+        } else {
+            runTerminalSequence();
+        }
     }
 
     // --- CONTACT MODAL LOGIC ---
